@@ -34,9 +34,9 @@ public class KyselypalveluBackendApplication {
 				Kysely kysely1 = new Kysely("Opiskelijan uni", "Nukkumistottumusten kartoitus", kysymykset);
 				kyselyRepo.save(kysely1);
 
-				kysymysRepo.save(new Kysymys ("Kuinka paljon nukut öisin keskimäärin?", kysely1));
-				kysymysRepo.save(new Kysymys ("Heräiletkö usein kesken unien?", kysely1));
-				kysymysRepo.save(new Kysymys ("Nousetko virkeänä aamulla?", kysely1));
+				kysymysRepo.save(new Kysymys ("Kuinka paljon nukut öisin keskimäärin?", "teksti", kysely1));
+				kysymysRepo.save(new Kysymys ("Heräiletkö usein kesken unien?", "teksti", kysely1));
+				kysymysRepo.save(new Kysymys ("Nousetko virkeänä aamulla?", "teksti", kysely1));
 						
 		};
 	}	

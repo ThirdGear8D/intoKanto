@@ -91,7 +91,8 @@ public class KysymysController {
  // Tallenna uusi kysymys kyselyyn ja ohjaa kyselyyn takaisin tallennuksen jälkeen
  	@RequestMapping(value = "/kysely/{id}/tallennakysymys", method = RequestMethod.POST)
  	public String tallennaKysymys(@PathVariable("id") Long id, @ModelAttribute Kysymys kysymys) {
- 		kysymys.setTeksti(kysymys.getTeksti());
+ 		kysymys.setKysymysteksti(kysymys.getKysymysteksti());
+ 		kysymys.setVastaustyyppi(kysymys.getVastaustyyppi());
  		kysymys.setKysely(kyselyrepo.findById(id).get());
  		kysymysrepo.save(kysymys);
  		return "redirect:/kysely/{id}";

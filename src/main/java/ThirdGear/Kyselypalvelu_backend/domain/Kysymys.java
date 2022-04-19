@@ -1,7 +1,7 @@
 package ThirdGear.Kyselypalvelu_backend.domain;
 
 
-import java.util.List;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,7 +21,8 @@ public class Kysymys {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long kysymysid;
-    private String teksti;
+    private String kysymysteksti;
+    private String vastaustyyppi;
 
     
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "kysymys")
@@ -35,15 +36,17 @@ public class Kysymys {
  
     public Kysymys() {
     	super();
-    	this.teksti = null;
+    	this.kysymysteksti = null;
+    	this.vastaustyyppi = null;
     	this.kysely = null;
     }
     
     
-	public Kysymys(String teksti, Kysely kysely) {
+	public Kysymys(String kysymysteksti, String vastaustyyppi, Kysely kysely) {
 		super();
-		this.teksti = teksti;
+		this.kysymysteksti = kysymysteksti;
 		this.kysely = kysely;
+		this.vastaustyyppi = vastaustyyppi;
 		
 	}		
 
@@ -54,8 +57,8 @@ public class Kysymys {
 	public Long getId() {
 		return kysymysid;
 	}
-	public String getTeksti() {
-		return teksti;
+	public String getKysymysteksti() {
+		return kysymysteksti;
 	}
 
 
@@ -63,6 +66,9 @@ public class Kysymys {
 		return kysely;
 	}
 
+	public String getVastaustyyppi() {
+		return vastaustyyppi;
+	}
 	
 	
 //----- SET --------------------------------------------------------
@@ -71,21 +77,24 @@ public class Kysymys {
 		this.kysymysid = kysymysid;
 	}
 	
-	public void setTeksti(String teksti) {
-		this.teksti = teksti;
+	public void setKysymysteksti(String kysymysteksti) {
+		this.kysymysteksti = kysymysteksti;
 	}
 
 	public void setKysely(Kysely kysely) {
 		this.kysely = kysely;
 	}
 
+	public void setVastaustyyppi(String vastaustyyppi) {
+		this.vastaustyyppi = vastaustyyppi;
+	}
 
 	
 	@Override
 	public String toString() {
 		if (this.kysely != null)
-			return "Kysymys [kysymysid=" + kysymysid + ", teksti=" + teksti +   " kysely =" + this.getKysely() + "]";		
+			return "Kysymys [kysymysid=" + kysymysid + ", kysymysteksti=" + kysymysteksti + ",vastaustyyppi=" + vastaustyyppi + ", kysely =" + this.getKysely() + "]";		
 		else
-			return "Kysymys [kysymysid=" + kysymysid + ", teksti=" + teksti + "]";	
+			return "Kysymys [kysymysid=" + kysymysid + ", kysymysteksti=" + kysymysteksti + "]";	
 	}
 }
