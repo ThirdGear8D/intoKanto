@@ -29,8 +29,7 @@ public class KyselyController {
 	@Autowired
 	private KysymysRepo kysymysrepo;
 	
-	@Autowired
-	private VastausRepo vastausrepo;
+	
 	
 
 
@@ -84,9 +83,5 @@ public class KyselyController {
 			return "redirect:/kyselyt";
 		}
 		
-		@RequestMapping(value = "/nayta/{id}", method = RequestMethod.GET)
-	    public String deleteH(@PathVariable("id") Long havaintoId, Model model) {
-	    	vastausrepo.findAll();
-	        return "nayta";
-	    }     
+		
  	}
