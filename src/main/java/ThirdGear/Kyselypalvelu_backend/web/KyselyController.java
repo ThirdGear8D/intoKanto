@@ -16,6 +16,7 @@ import ThirdGear.Kyselypalvelu_backend.domain.Kysely;
 import ThirdGear.Kyselypalvelu_backend.domain.KyselyRepo;
 import ThirdGear.Kyselypalvelu_backend.domain.Kysymys;
 import ThirdGear.Kyselypalvelu_backend.domain.KysymysRepo;
+import ThirdGear.Kyselypalvelu_backend.domain.VastausRepo;
 
 
 
@@ -27,6 +28,9 @@ public class KyselyController {
 
 	@Autowired
 	private KysymysRepo kysymysrepo;
+	
+	@Autowired
+	private VastausRepo vastausrepo;
 	
 
 
@@ -79,4 +83,10 @@ public class KyselyController {
 			kyselyrepo.delete(kyselyrepo.findById(id).get());
 			return "redirect:/kyselyt";
 		}
+		
+		@RequestMapping(value = "/nayta/{id}", method = RequestMethod.GET)
+	    public String deleteH(@PathVariable("id") Long havaintoId, Model model) {
+	    	vastausrepo.findAll();
+	        return "nayta";
+	    }     
  	}

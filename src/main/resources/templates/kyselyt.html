@@ -134,6 +134,7 @@ table {
 						<th>Nimi</th>
 						<th>Kyselyn kuvaus</th>
 						<th>Kysymysten määrä</th>
+						<th>Vastaukset</th>
 					</tr>
 				</thead>
 
@@ -147,6 +148,8 @@ table {
 							th:text="${kysely.nimi}"></a></td>
 						<td th:text="${kysely.kuvaus}"></td>
 						<td th:text="${kysely.getKysymyksetSize}"></td>
+						<td> <a class="btn-warning" th:href="@{/nayta/kysely/{id}(id=${kysely.id})}">Näytä vastaukset</a>
+						<!-- <td th:text="${kysely.kysymykset.vastaukset"></td> -->
 						<td>
 							<!--  POISTA KYSELY  - --> <a class="btn btn-warning"
 							th:href="@{/poista/kysely/{id}(id=${kysely.id})}">Poista</a>

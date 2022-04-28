@@ -3,6 +3,8 @@ package ThirdGear.Kyselypalvelu_backend.domain;
 
 
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,12 +28,16 @@ public class Kysymys {
     private String vastaustyyppi;
 
     
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "kysymys")
 
+
+    
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "id") 
     private Kysely kysely;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy ="kysymys")
+    private List<Vastaus> vastaukset;
 
     
  
@@ -39,14 +46,18 @@ public class Kysymys {
     	this.kysymysteksti = null;
     	this.vastaustyyppi = null;
     	this.kysely = null;
+    	
     }
     
     
-	public Kysymys(String kysymysteksti, String vastaustyyppi, Kysely kysely) {
+	public Kysymys(String kysymysteksti, String vastaustyyppi, Kysely kysely, List<Vastaus> vastaukset) {
 		super();
 		this.kysymysteksti = kysymysteksti;
 		this.kysely = kysely;
 		this.vastaustyyppi = vastaustyyppi;
+		this.vastaukset = vastaukset;
+
+
 		
 	}		
 
@@ -71,8 +82,22 @@ public class Kysymys {
 	}
 	
 	
+	public List<Vastaus> getVastaukset() {
+		return vastaukset;
+	}
+	
+	
+	
 //----- SET --------------------------------------------------------
 	
+	
+
+
+	public void setVastaukset(List<Vastaus> vastaukset) {
+		this.vastaukset = vastaukset;
+	}
+
+
 	public void setId(Long kysymysid) {
 		this.kysymysid = kysymysid;
 	}
@@ -88,8 +113,16 @@ public class Kysymys {
 	public void setVastaustyyppi(String vastaustyyppi) {
 		this.vastaustyyppi = vastaustyyppi;
 	}
+	
+	
 
 	
+	
+
+
+	
+
+
 	@Override
 	public String toString() {
 		if (this.kysely != null)

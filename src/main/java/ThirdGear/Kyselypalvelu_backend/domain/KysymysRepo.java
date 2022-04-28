@@ -10,5 +10,6 @@ public interface KysymysRepo extends CrudRepository<Kysymys, Long> {
 
 	   List<Kysymys> findByKysymysteksti(String kysymysteksti);
 	   List<Kysymys> findByKysely(Optional<Kysely> kysely);
+	  
 
 }
